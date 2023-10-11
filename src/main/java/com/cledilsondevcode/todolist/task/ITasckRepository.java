@@ -1,4 +1,9 @@
 package com.cledilsondevcode.todolist.task;
 
-public class ITasckRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ITasckRepository extends JpaRepository<TaskModel, Long> {
+
+
+
 }

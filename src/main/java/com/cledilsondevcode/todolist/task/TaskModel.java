@@ -26,24 +26,10 @@ public class TaskModel {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    public TaskModel() {
-    }
-
-    public TaskModel(String description, String title, LocalDateTime startAt, LocalDateTime endAt, String priority, LocalDateTime createdAt) {
-        this.description = description;
-        this.title = title;
-        this.startAt = startAt;
-        this.endAt = endAt;
-        this.priority = priority;
-        this.createdAt = createdAt;
-    }
+    private Long idUser;
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getDescription() {
@@ -92,6 +78,14 @@ public class TaskModel {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Long getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 
     @Override
