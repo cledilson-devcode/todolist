@@ -28,6 +28,10 @@ public class TaskModel {
 
     private Long idUser;
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
