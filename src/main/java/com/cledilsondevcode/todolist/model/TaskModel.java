@@ -1,8 +1,8 @@
-package com.cledilsondevcode.todolist.task;
+package com.cledilsondevcode.todolist.model;
 
-import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -48,7 +48,10 @@ public class TaskModel {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title) throws Exception {
+        if (title.length() > 50){
+            throw new Exception("O campo title deve conter no máximo 50 caracteres");
+        }
         this.title = title;
     }
 

@@ -1,11 +1,11 @@
-package com.cledilsondevcode.todolist.task;
+package com.cledilsondevcode.todolist.repository;
 
+import com.cledilsondevcode.todolist.model.TaskModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface ITasckRepository extends JpaRepository<TaskModel, Long> {
+public interface TaskRepository extends JpaRepository<TaskModel, Long> {
 
         List<TaskModel> findByIdUser(Long idUser);
         TaskModel findByIdAndIdUser(Long id, Long idUser);

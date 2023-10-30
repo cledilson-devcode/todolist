@@ -1,8 +1,8 @@
-package com.cledilsondevcode.todolist.user;
+package com.cledilsondevcode.todolist.model;
 
-import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
