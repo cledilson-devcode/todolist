@@ -1,7 +1,7 @@
 package com.cledilsondevcode.todolist.controller;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
-import com.cledilsondevcode.todolist.model.TaskModel;
+import com.cledilsondevcode.todolist.handler.BusinessException;
+import com.cledilsondevcode.todolist.handler.CampoObrigatorioException;
 import com.cledilsondevcode.todolist.model.UserModel;
 import com.cledilsondevcode.todolist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +32,35 @@ public class UserController {
 
         userModel.setPassword(userModel.getPassword());
 
-        UserModel userCreated = this.userRepository.save(userModel);
+        if (userModel.getPassword() == null) {
+            throw new CampoObrigatorioException("password");
+        } else if (userModel.getUsername() == null) {
+            throw new CampoObrigatorioException("login");
+        } else {
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(userCreated);
+            UserModel userCreated = this.userRepository.save(userModel);
+            return ResponseEntity.status(HttpStatus.CREATED).body(userCreated);
+        }
+
+
+
     }
 
     @GetMapping("/listUsers")
     public List<UserModel> list(){
         List<UserModel> users = this.userRepository.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(users).getBody();
+    }
+
+    @GetMapping("/{username}")
+    public UserModel getUser(@PathVariable("username") String username){
+        UserModel userModel = userRepository.findByUsername(username);
+        return ResponseEntity.status(HttpStatus.OK).body(userModel).getBody();
+    }
+
+    @DeleteMapping("/{id}")
+    public Long deleteUser(@PathVariable("id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(id).getBody();
     }
 
 
