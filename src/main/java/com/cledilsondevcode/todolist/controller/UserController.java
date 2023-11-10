@@ -7,6 +7,7 @@ import com.cledilsondevcode.todolist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
 
 
     @PostMapping("/createUser")
@@ -52,13 +54,13 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(users).getBody();
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/managers/{username}")
     public UserModel getUser(@PathVariable("username") String username){
         UserModel userModel = userRepository.findByUsername(username);
         return ResponseEntity.status(HttpStatus.OK).body(userModel).getBody();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/managers/{id}")
     public Long deleteUser(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(id).getBody();
     }
