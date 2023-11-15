@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity(name = "tb_tasks")
+@Entity(name = "tab_tasks")
 public class TaskModel {
 
     @Id

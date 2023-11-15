@@ -4,34 +4,44 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-@Entity(name = "tb_users")
+//@Entity(name = "tb_userModel")
+@Entity(name = "tab_userModel")
 public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "id_user")
     private Long id;
-    @Column(name = "username", unique = true)
-    private String username;
-    @Column(name = "name")
+    @Column(length = 50, nullable = false)
     private String name;
-    @Column(name = "password")
+    @Column(length = 20, nullable = false)
+    private String username;
+    @Column(length = 100, nullable = false)
     private String password;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "tab_user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role_id")
+    private List<String> roles = new ArrayList<>();
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+
+
+    public UserModel(){
+
+    }
+    public UserModel(String username){
+        this.username = username;
+    }
 
     public Long getId() {
         return id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -42,12 +52,28 @@ public class UserModel {
         this.name = name;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 
     @Override

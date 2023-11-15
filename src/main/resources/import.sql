@@ -1,0 +1,17 @@
+---- Inserir usuário "admin" na tabela tb_user
+--INSERT INTO tb_user (name, username, password) VALUES ('ADMIN', 'admin', 'master123');
+--
+---- Obter o ID do usuário recém-inserido
+--SET @admin_user_id = LAST_INSERT_ID();
+--
+---- Inserir a role "MANAGERS" associada ao usuário "admin" na tabela tab_user_roles
+--INSERT INTO tab_user_roles (user_id, role_id) VALUES (@admin_user_id, 'MANAGERS');
+--
+---- Inserir usuário "user" na tabela tb_user
+--INSERT INTO tb_user (name, username, password) VALUES ('USER', 'user', 'user123');
+--
+---- Obter o ID do usuário recém-inserido
+--SET @user_user_id = LAST_INSERT_ID();
+--
+---- Inserir a role "USERS" associada ao usuário "user" na tabela tab_user_roles
+--INSERT INTO tab_user_roles (user_id, role_id) VALUES (@user_user_id, 'USERS');
